@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-@Transactional(readOnly = false)
 public class UserServiceImpl implements UserService{
     private final UserDao userDao;
     @Autowired
@@ -17,22 +16,26 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @Transactional
     public void saveUser(String name, String lastName, String email) {
         userDao.saveUser(name, lastName, email);
     }
 
     @Override
+    @Transactional
     public void removeUserById(long id) {
         userDao.removeUserById(id);
     }
 
     @Override
+    @Transactional
     public void updateUser(long id, User user) {
         userDao.updateUser(id, user.getFirstName(), user.getLastName(), user.getEmail());
     }
 
 
     @Override
+    @Transactional
     public void add(User user) {
         userDao.add(user);
     }
